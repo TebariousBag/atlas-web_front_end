@@ -567,6 +567,10 @@ ul.row{
 	color: var(--nav-item-link-hover);
   }
 
+  .social-link > svg {
+	fill: var(--text-color);
+  }
+  
   [class^="col-"] {
 	float: left;
 	padding: 0.5rem;
