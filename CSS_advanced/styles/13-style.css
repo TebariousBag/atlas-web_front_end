@@ -49,7 +49,7 @@ body {
 }
 
 a:link {
-    color: var(--text-color);
+    background-color: var(--text-color);
 	text-decoration: none
 }
 
