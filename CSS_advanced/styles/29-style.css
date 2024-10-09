@@ -605,6 +605,16 @@ ul.row{
 	margin: var(--nav-item-margin);
   }
   
+  .nav .nav-link::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: var(--color-white);
+	width: 0;
+	height: 0.2rem;
+  }
+  
   .nav .nav-link{
 	display: block;
 	padding: 0.5rem 1rem;
