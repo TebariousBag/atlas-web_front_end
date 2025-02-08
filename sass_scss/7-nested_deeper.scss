@@ -11,9 +11,8 @@ body {
 
 	h1 {
 		font-size: $h1-size;
-
-		h1.smaller {
-			font-size: $smaller;
-		}
+	}
+	h1.smaller {
+		font-size: $smaller;
 	}
 }
