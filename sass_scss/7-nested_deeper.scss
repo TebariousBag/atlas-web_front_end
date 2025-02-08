@@ -1,0 +1,19 @@
+/* Font size 14px to all body tags
+Font size 16px to all h1 tags inside body tags
+Font size 12px to h1 tags of class .smaller inside body tags */
+
+$smaller: 12px;
+$h1-size: 16px;
+$letters-size: 14px;
+
+body {
+	font-size: $letters-size;
+
+	h1 {
+		font-size: $h1-size;
+
+		.smaller {
+			font-size: $smaller;
+		}
+	}
+}
