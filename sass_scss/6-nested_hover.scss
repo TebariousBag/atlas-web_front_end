@@ -7,7 +7,7 @@ $hover-color: #00FF00;
 button {
 	color: $btn-color;
 
-	button:hover {
+	&:hover {
 		color: hover-color;
 	}
 }
