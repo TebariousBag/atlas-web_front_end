@@ -8,7 +8,7 @@ body {
 	color: $letters-color;
 
 	> .red {
-		&first-child {
+		&:first-child {
 			color: $red;
 		}
 	}
