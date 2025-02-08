@@ -7,9 +7,9 @@ $red : #FF0000;
 body {
 	color: $letters-color;
 
-	.red {
+	> .red {
 		&first-child {
-			color: #FF0000;
+			color: $red;
 		}
 	}
 }
