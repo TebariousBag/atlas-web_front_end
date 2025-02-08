@@ -1,0 +1,7 @@
+/* file that creates H* tags, where ‘j’ is the size of the font used */
+
+@for $j from 1 through 5 {
+	h#{$j} {
+		font-size: #{$j}px;
+	}
+}
