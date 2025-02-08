@@ -2,8 +2,6 @@
 
 @import '11-photos.scss';
 
-$list-names: julien john sam damian;
-
 @each $person in $list-names {
   .photo-#{$person} {
 	background: image-url("photos/#{$person}.jpg") no-repeat;
