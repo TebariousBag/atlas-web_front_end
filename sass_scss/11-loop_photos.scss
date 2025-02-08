@@ -1,0 +1,9 @@
+/* file that creates a class for each name in the list $list-names and assigns the background image based on the name */
+
+@import "info";
+
+@each $person in $list-names {
+  .photo-#{$person} {
+	background-image: url("photos/#{$name}.jpg");
+  }
+}
