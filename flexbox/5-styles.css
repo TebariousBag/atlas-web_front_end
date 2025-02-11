@@ -59,13 +59,13 @@
     --section-body-padding: 2rem 0 4rem;
     --section-footer-padding: 3rem 0 0;
     --section-footer-align: center;
-  
+   }
     /** HEADER **/
 
-	.header-container {
+.header-container {
 		display: flex;
 		justify-content: space-between;
-	}
+}
 	
     --header-padding: 4rem 0 0;
   
