@@ -350,7 +350,7 @@
       ============================= */
   
   .section-hero {
-    position: inherit;
+    position: relative;
 	margin-top: -8.5rem;
   }
   
@@ -358,8 +358,8 @@
 	padding: 10rem 4rem;
   }
 
-  .section-hero .section-body {
-	color: white;
+  .section-hero .section-category {
+	color: var(--color-white);
 	text-transform: uppercase;
   }
 
