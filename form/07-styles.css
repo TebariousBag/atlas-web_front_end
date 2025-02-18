@@ -819,7 +819,7 @@ input:not(:placeholder-shown) ~ .form-field-icon::after {
   /*** SEARCH FORM ***/
 
   .form-search {
-	display: inline-block;
+	display: block;
 	padding: .5rem 0;
 	position: relative;
   }
