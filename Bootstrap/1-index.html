@@ -13,16 +13,17 @@
 		<!-- This div is a row of columns, spaced evenly if there is no specified value -->
 		 <!-- col-lg is Screen >= 992px: display like 4 columns in one line-->
 		  <!-- padding is broken down into quarters, so p-2 is .5 rem -->
-        <div class="row p-2">
-            <div class="col-lg bg-primary text-white text-center">Primary</div>
-            <div class="col-lg bg-success text-white text-center">Success</div>
-            <div class="col-lg bg-danger text-white text-center">Danger</div>
-            <div class="col-lg bg-warning text-white text-center">Warning</div>
+		   <!-- adding padding to each cell rather than the container div-->
+        <div class="row">
+            <div class="p-2 col-lg bg-primary text-white text-center ">Primary</div>
+            <div class="p-2 col-lg bg-success text-white text-center">Success</div>
+            <div class="p-2 col-lg bg-danger text-white text-center">Danger</div>
+            <div class="p-2 col-lg bg-warning text-white text-center">Warning</div>
         </div>
 
         <hr />
 
-        <div class="row p-2">
+        <div class="row">
             <div class="col-sm bg-primary text-white text-center">Primary</div>
             <div class="col-sm bg-success text-white text-center">Success</div>
             <div class="col-sm bg-danger text-white text-center">Danger</div>
@@ -31,7 +32,7 @@
 
         <hr />
 		<!-- just breaking down the sizes, tell it how many units and then break down sections -->
-        <div class="row p-2">
+        <div class="row">
             <div class="col-12 col-lg-2 bg-primary text-white text-center">Primary</div>
             <div class="col-12 col-lg-4 bg-success text-white text-center">Success</div>
             <div class="col-12 col-lg-6 bg-danger text-white text-center">Danger</div>
@@ -48,17 +49,17 @@
 
         <hr/>
 
-        <div class="row p-2">
-            <div>Primary</div>
-            <div>Success</div>
+        <div class="row justify-content-between">
+            <div class="p-2 col-12 col-lg-2 col-md-12 text-white text-center bg-primary">Primary</div>
+            <div class="p-2 col-12 col-lg-2 col-md-12 text-white text-center bg-success">Success</div>
         </div>
 
         <hr/>
 
-        <div>
-            <div>Primary</div>
-            <div>Success</div>
-            <div>Danger</div>
+        <div class="row justify-content-between">
+            <div class="text-white text-center bg-primary col-12 col-md-2 p-2">Primary</div>
+            <div class="text-white text-center bg-success col-12 col-md-2 offset-md-3">Success</div>
+            <div class="text-white text-center bg-danger col-12 col-md-2 p-2 offset-md-1">Danger</div>
         </div>
     </body>
 </html>
