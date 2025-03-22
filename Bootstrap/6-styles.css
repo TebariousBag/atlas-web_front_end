@@ -45,11 +45,6 @@ a:focus {
 	border-radius: 1rem !important;
 }
 
-/* found footer border-top */
-footer.border-top {
-	border-color: #E0003C !important;
-}
-
 .text-muted {
 	color: #8C8C8C;
 }
