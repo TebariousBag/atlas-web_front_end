@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Task 0</title>
+		<!-- load jquery, preferably a reliable source like official -->
+		 <!-- not slim -->
+		 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    </head>
+
+    <body>
+      <script type="application/javascript">
+        function createSearchForm() {
+          // add input, submit, and empty <ul> close the tag
+          const inputbox = $('<input type="text" />');
+          const submitbox = $('<input type="submit" value="submit" />');
+          const ulist = $('<ul></ul>');
+
+          // add them to body of html
+          $('body').append(inputbox, submitbox, ulist);
+        }
+
+        // when page is ready load the form
+        $(document).ready(function() {
+          createSearchForm();
+        });
+      </script>
+
+    </body>
+
+</html>
