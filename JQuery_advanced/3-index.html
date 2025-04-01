@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Task 0</title>
+		<!-- load jquery, preferably a reliable source like official -->
+		 <!-- slim cant GET or POST -->
+		<script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
+    </head>
+
+    <body>
+      <script type="application/javascript">
+       function createFamilyTree() {
+		// variable holding the html for a table
+		// create table as an object
+		const table = $("<table></table>").appendTo("body");
+		// create head and attach to table we just created
+		const tHead = $("<thead></thead>").appendTo(table)
+		// add a row to the head
+		$("<tr></tr>")
+                .append($("<th></th>").text("Firstname"))
+                .append($("<th></th>").text("Lastname"))
+                .appendTo(tHead);
+		// create body and attach to table we just created
+		const tBody = $("<tBody></tBody>").appendTo(table);
+		// add row 1, with two cells that have text
+		$("<tr></tr>")
+                .append($("<td></td>").text("Guillaume"))
+                .append($("<td></td>").text("Salva"))
+                .appendTo(tBody);
+		// add row 2, with two cells that have text
+		$("<tr></tr>")
+                .append($("<td></td>").text("Paulette"))
+                .append($("<td></td>").text("Salva"))
+                .appendTo(tBody);
+		// add row 3, with two cells that have text
+		$("<tr></tr>")
+                .append($("<td></td>").text("Antoine"))
+                .append($("<td></td>").text("Salva"))
+                .appendTo(tBody);
+	   }
+	   
+	   function replaceFamilyTree() {
+		// .html replaces the content of the element
+		// so we are replacing the body of table with a new row
+		$("tBody").html(
+			// new row
+			$("<tr>").append(
+				// text in cells
+				$("<td>").text("Gerard"),
+				$("<td>").text("Bonissa")
+			));
+	   }
+	   // create the table
+	   createFamilyTree();
+	   //replace the table
+	   
+      </script>
+	  <!-- replace the table -->
+	   <!-- simple button to run function -->
+	  <input type ="button" onclick ="replaceFamilyTree()" value ="replace">
+    </body>
+
+</html>
