@@ -3,11 +3,11 @@ function processPayment(amount) {
   console.log(`Collecting payment of ${amount}`);
 }
 
+// log of order id and then amount
 function processOrder(orderId, amount) {
   console.log(`${orderId} is being processed`)
-  function processPayment() {
-    console.log(`${orderId} has been fully processed`)
-  }
+  processPayment(amount);
+  console.log(`${orderId} has been fully processed`)
 }
 
 console.log('Processing orders');
