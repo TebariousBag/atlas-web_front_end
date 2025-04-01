@@ -15,13 +15,68 @@
         function createSearchForm() {
           // add input, submit, and empty <ul> close the tag
           const inputbox = $('<input type="text" />');
-          const submitbox = $('<input type="submit" value="submit" />');
+          const submitbox = $('<input type="submit" value="Submit" />');
           const ulist = $('<ul></ul>');
 
           // add them to body of html
           $('body').append(inputbox, submitbox, ulist);
+
+          // click event for submit button
+          submitbox.on('click', function(event) {
+            // get value of whats in the input box
+            const searching = inputbox.val();
+
+            // clear when searching again
+            // or else the previous search stays there
+            $('ul').empty();
+
+            // clear the input box also
+            inputbox.val('');
+
+            // call the query when clicked
+            queryWikipedia(searching);
+          });
         }
 
+        function addNewArticle(id, title, snippet) {
+          // empty list item
+          const listitem = $('<li></li>');
+
+          // 2 paragraphs
+          // id - title, for the first one
+          const pone = $('<p></p>').text(id).append(
+            $('<span></span>').text(' - '),
+            $('<b></b>').text(title)
+          );
+          // snippet in the second one
+          // had to get rid of the html tags in the snippet
+          const ptwo = $('<p></p>').text(snippet.replace(/<\/?[^>]+(>|$)/g, ""));
+
+          // add the paragraphs to the listitem
+          listitem.append(pone, ptwo);
+          // add the listitem to the <ul>
+          $('ul').append(listitem);
+        }
+
+        // search function
+        function queryWikipedia(search) {
+          // the url to search
+          const wikiapi = `https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=${search}&origin=*`;
+          // get request to the url
+          $.get(wikiapi, {
+            action: 'query',
+            list: 'search',
+            srsearch: search,
+            format: 'json',
+            origin: '*'
+          }).done(function(data) {
+            data.query.search.forEach(function(article) {
+              // add the articles to the list
+              addNewArticle(article.pageid, article.title, article.snippet);
+            });
+          });
+        }
+        
         // when page is ready load the form
         $(document).ready(function() {
           createSearchForm();
