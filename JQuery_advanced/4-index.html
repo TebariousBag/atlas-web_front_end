@@ -41,12 +41,26 @@
                 .append($("<td></td>").text("Salva"))
                 .appendTo(tBody);
 	   }
+	   
+	   function replaceFamilyTree() {
+		// .html replaces the content of the element
+		// so we are replacing the body of table with a new row
+		$("tBody").html(
+			// new row
+			$("<tr>").append(
+				// text in cells
+				$("<td>").text("Gerard"),
+				$("<td>").text("Bonissa")
+			));
+	   }
 	   // create the table
 	   createFamilyTree();
 	   //replace the table
 	   
       </script>
-
+	  <!-- replace the table -->
+	   <!-- simple button to run function -->
+	  <input type ="button" onclick ="replaceFamilyTree()" value ="replace">
     </body>
 
 </html>
