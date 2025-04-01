@@ -65,7 +65,8 @@
             // prevent default, or else it reloads page and name wont add
             event.preventDefault();
             // val is the value that is in the input
-            addNewMember(firstname.val(), lastname.val(), select.val());
+            // target FIRST input val, target same type but the 2nd ones val
+            addNewMember($('input').first().val(), $('input:nth-of-type(2)').val(), select.val())
             // clear the inputs after submitting
             firstname.val("");
             lastname.val("");
