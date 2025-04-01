@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <title>Task 0</title>
+		<!-- load jquery, preferably a reliable source like official -->
+		 <!-- slim cant GET or POST -->
+		<script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
+    </head>
+
+    <body>
+      <script type="application/javascript">
+        // creating empty table, head still has firstname lastname
+       function createFamilyTree() {
+        const table = $("<table></table>").append(
+          $("<thead></thead>").append(
+            $("<tr></tr>").append(
+              $("<th></th>").text("Firstname"),
+                $("<th></th>").text("Lastname"))),
+            $("<tbody></tbody>")
+          )
+          // add the created table to the body of html
+          $("body").append(table);
+	   }
+     // add members to the table
+     // added position to args
+     function addNewMember(firstName, lastName, position) {
+      // structure, row takes a firstname and a lastname
+        const row = $("<tr>").append(
+            $("<td>").text(firstName),
+            $("<td>").text(lastName),
+            // an (x) with a click event that removes it from parent
+            $("<td>").text("(x)").css("background-color", "orange").click(function () {
+                $(this).parent().remove();
+            })
+        );
+        // if position is equal to before then prepend
+        // else append
+        if (position === "before") {
+            $("tbody").prepend(row);
+        } else {
+            $("tbody").append(row);
+        }
+
+    }
+    // i dislike forms
+    function createForm() {
+        // create form
+        const form = $('<form></form>');
+        // the select options, before and after
+        const select = $('<select id="formSelect" name="formSelect"><option value="before">Before</option><option value="after">After</option></select>');
+        // two inpus of type text, no placeholder text on intranet
+        const firstname = $('<input type="text">');
+        const lastname = $('<input type="text">');
+        // submit button, input type submit
+        const submit = $('<input type="submit" value="Submit">');
+        // form before the table
+        $("table").before(form);
+        // then append my variables to the form
+        form.append(firstname, lastname, select, submit);
+
+        form.on("submit", function(event) {
+            // prevent default, or else it reloads page and name wont add
+            event.preventDefault();
+            // val is the value that is in the input
+            addNewMember(firstname.val(), lastname.val(), select.val());
+            // clear the inputs after submitting
+            firstname.val("");
+            lastname.val("");
+        });
+    }
+
+    // wait until the html document is loaded first then run the script
+    $(document).ready(function () {
+        createFamilyTree();
+        createForm();
+
+        // don't need this for this task
+        // Add initial members
+        addNewMember("Guillaume", "Salva", "after");
+        addNewMember("Arielle", "Snizt", "after");
+        addNewMember("Fanette", "Snizt", "after");
+        addNewMember("Gerard", "Snizt", "after");
+        addNewMember("Victor", "Salva", "after");
+    });
+
+      </script>
+
+    </body>
+
+</html>
