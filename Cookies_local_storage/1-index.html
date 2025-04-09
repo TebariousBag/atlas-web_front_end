@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task 0</title>
+	</head>
+	<body>
+		<!-- Login section -->
+		<h1>Login to the website</h1>
+		<input type="text" placeholder="Firstname" id="firstname">
+		<input type="text" placeholder="Email" id="email">
+		<button onclick="setCookies()">Log me in</button>
+		<!-- Show Cookies section -->
+		<h1>Cookies</h1>
+		<button onclick="showCookies()">Show the cookies</button>
+    <!-- div to append <p> to -->
+    <div id="cookies"></div>
+
+    <!-- Functions Here -->
+		<script type="text/javascript">
+			function setCookies() {
+        // get the values of the inputs
+			  const firstname = document.getElementById('firstname').value;
+			  const email = document.getElementById('email').value;
+
+			  // expiration date, 10 days
+			  // create new date
+			  const tendays = new Date();
+			  tendays.setDate(tendays.getDate() + 10);
+			  // convert value to UTC string
+			  const expires = tendays.toUTCString();
+			  
+		
+		// Set cookies
+        // without a path it just repeats
+			  document.cookie = `firstname=${firstname}; path=/; expires=${expires}`;
+			  document.cookie = `email=${email}; path=/; expires=${expires}`;
+			}
+		
+			function showCookies() {
+        // creat paragraph
+			  const para = document.createElement('p');
+        // with inner html Cookies: 'the cookies'
+			  para.innerHTML = `Cookies: ${document.cookie}`;
+        // and append it to the div with id cookies
+			  document.getElementById('cookies').appendChild(para);
+			}
+		</script>
+	</body>
+</html>

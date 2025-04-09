@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task 0</title>
+	</head>
+	<body>
+		<!-- Login section -->
+		<h1>Login to the website</h1>
+		<input type="text" placeholder="Firstname" id="firstname">
+		<input type="text" placeholder="Email" id="email">
+		<button onclick="setCookies()">Log me in</button>
+		<!-- Show Cookies section -->
+		<h1>Cookies</h1>
+		<button onclick="showCookies()">Show the cookies</button>
+    <!-- div to append <p> to -->
+    <div id="cookies"></div>
+
+    <!-- Functions Here -->
+		<script type="text/javascript">
+			function setCookies() {
+        // get the values of the inputs
+			  const firstname = document.getElementById('firstname').value;
+			  const email = document.getElementById('email').value;
+
+			  // expiration date, 10 days
+			  // create new date
+			  const tendays = new Date();
+			  tendays.setDate(tendays.getDate() + 10);
+			  // convert value to UTC string
+			  const expires = tendays.toUTCString();
+			  
+		
+		// Set cookies
+        // without a path it just repeats
+			  document.cookie = `firstname=${firstname}; path=/; expires=${expires}`;
+			  document.cookie = `email=${email}; path=/; expires=${expires}`;
+			}
+		
+      // function to show the cookies
+      // create a paragraph element, and use getCookie to retrieve value
+			function showCookies() {
+        const firstname = getCookie('firstname');
+        const email = getCookie('email');
+        // create paragraph
+        const para = document.createElement('p');
+
+        // paragraph inner text
+        para.innerHTML = `Email: ${email} - Firstname: ${firstname}`;
+        // append it to cookies div
+        document.getElementById('cookies').appendChild(para);
+      }
+
+      // function to get a cookie by name
+      function getCookie(name) {
+        // split at the semicolon
+        const arraycookies = document.cookie.split(';');
+        // loop through the array of cookies
+        // and split at the equal sign
+        for (let i = 0; i < arraycookies.length; i++) {
+          // had to trim to retrieve email properly
+          const cookie = arraycookies[i].trim().split('=');
+          // if name matches then return the value
+          if (cookie[0] === name) {
+            return cookie[1];
+          }
+        }
+        return '';
+      }
+		</script>
+	</body>
+</html>
