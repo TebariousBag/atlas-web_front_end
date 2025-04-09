@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cart</title>
+</head>
+<body>
+
+  <!-- the welcome message-->
+  <div>
+    <h2>Cart</h2>
+  </div>
+  <div id="cartMessage">
+  </div>
+	<!-- the store items-->
+  <h2>Store</h2>
+  <ul id="store"></ul>
+
+  <script>
+    // check if local storage is supported
+    // if not then alert
+    if (typeof(Storage) === "undefined") {
+      alert("Sorry, your browser does not support Web storage. Try again with a better one.");
+    } else {
+      // else load the store
+      // items available
+      const availableItems = ['Shampoo', 'Soap', 'Sponge', 'Water'];
+      
+      // load store and cart when page loads
+      window.onload = function() {
+        createStore();
+        displayCart();
+      };
+
+      // function to create the store
+      function createStore() {
+        const store = document.getElementById('store');
+        store.innerHTML = ''; // Clear any previous store items
+        
+        // loop through available items and create a list item for each
+        // check available items, create li for ul
+        availableItems.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          // when clicked run addItemToCart
+          li.onclick = function() {
+            addItemToCart(item);
+          };
+          store.appendChild(li);
+        });
+      }
+
+      // function to display the cart message
+      function displayCart() {
+        const cartMessage = document.getElementById('cartMessage');
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        
+        // if items in the cart, display the count
+        if (cart.length > 0) {
+          cartMessage.textContent = `You previously had ${cart.length} item(s) in your cart.`;
+        }
+      }
+    }
+
+      // Function to add item to the cart (localStorage)
+      function addItemToCart(item) {
+        // check if the item is already in the cart
+        // parse the cart from local storage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // if the item is not already in the cart, add it
+        if (!cart.includes(item)) {
+          cart.push(item);
+          // stringify the cart and set it to local storage
+          localStorage.setItem('cart', JSON.stringify(cart));
+        }
+      }
+
+  </script>
+
+</body>
+</html>
