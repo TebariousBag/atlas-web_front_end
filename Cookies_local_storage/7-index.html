@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+</head>
+<body>
+
+  <!-- store here -->
+   <h2>Available products:</h2>
+  <div id="store"></div>
+  <!-- cart here -->
+   <h2>Your cart:</h2>
+  <div id="cart"></div>
+
+  <script>
+    // session storage unavailable, then alert
+    if (typeof(Storage) === "undefined") {
+      alert("Sorry, your browser does not support Web storage. Try again with a better one.");
+    } else {
+      // if session is good then display available
+      const availableItems = ['Shampoo', 'Soap', 'Sponge', 'Water'];
+
+      // create when page is loaded
+      window.onload = function() {
+        createStore();
+        displayCart();
+      };
+
+      // parse storage and get cart
+      function getCartFromStorage() {
+        const cart = JSON.parse(sessionStorage.getItem('cart'));
+        // if null return empty
+        return cart ? cart : {};
+      }
+
+      // add to cart, and increase if already in cart
+      function addItemToCart(item) {
+        let cart = getCartFromStorage();
+
+        if (cart[item]) {
+          cart[item]++;
+        } else {
+          cart[item] = 1;
+        }
+
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+        displayCart();
+      }
+
+      // remove from cart
+      function removeItemfromCart(item) {
+        let cart = getCartFromStorage();
+        delete cart[item];
+        // remove then display the cart
+        sessionStorage.setItem('cart', JSON.stringify(cart));
+        displayCart();
+      }
+
+      // clear the whole cart
+      function clearCart() {
+        sessionStorage.removeItem('cart');
+        displayCart();
+      }
+
+      // the store with items
+      function createStore() {
+        const storeDiv = document.getElementById('store');
+        // clear the store
+        storeDiv.innerHTML = '';
+
+        // list for store
+        const storeList = document.createElement('ul');
+        // for each available item, create a list item
+        availableItems.forEach(item => {
+          const listItem = document.createElement('li');
+          listItem.classList.add('item');
+          listItem.textContent = item;
+          listItem.onclick = function() {
+            addItemToCart(item);
+          };
+          storeList.appendChild(listItem);
+        });
+
+        storeDiv.appendChild(storeList);
+      }
+
+      // the cart
+      function displayCart() {
+        const cartDiv = document.getElementById('cart');
+        cartDiv.innerHTML = '';
+
+        const cartItemsDiv = document.createElement('div');
+        cartDiv.appendChild(cartItemsDiv);
+
+        const cart = getCartFromStorage();
+
+        if (Object.keys(cart).length === 0) {
+          cartItemsDiv.textContent = 'Your cart is empty';
+        } else {
+          const cartList = document.createElement('ul');
+
+          // Add "Clear my cart" list item at the top
+          const clearItem = document.createElement('li');
+          // add option to clear cart when cart has item
+          clearItem.classList.add('clear-cart');
+          clearItem.textContent = 'Clear my cart';
+          clearItem.onclick = clearCart;
+          cartList.appendChild(clearItem);
+
+          // Add the rest of the cart items
+          for (let item in cart) {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${item} x ${cart[item]} `;
+
+            // create and remove by using span
+            const removeLink = document.createElement('span');
+            removeLink.classList.add('remove');
+            removeLink.textContent = '(remove)';
+            removeLink.onclick = function() {
+              removeItemfromCart(item);
+            };
+
+            listItem.appendChild(removeLink);
+            cartList.appendChild(listItem);
+          }
+
+          cartItemsDiv.appendChild(cartList);
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
